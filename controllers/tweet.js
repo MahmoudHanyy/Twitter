@@ -24,8 +24,8 @@ const getTweet = async (req, res) => {
 
 const createTweet = async (req, res) => {
   req.body.userId = req.user.userId
-  const tweet = await tweet.create(req.body)
-  res.status(StatusCodes.CREATED).json({ tweet })
+  const createdTweet = await tweet.create(req.body)
+  res.status(StatusCodes.CREATED).json({ createdTweet })
 }
 
 const deleteTweet = async (req, res) => {
