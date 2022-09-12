@@ -1,9 +1,9 @@
-const tweet = require('../models/Tweet')
+const Tweet = require('../models/Tweet')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, NotFoundError } = require('../errors')
 
 const getAllTweets = async (req, res) => {
-  const tweets = await tweet.find({ userId: req.user.userId }).sort('createdAt')
+  const tweets = await Tweet.find({ userId: req.user.userId }).sort('createdAt')
   res.status(StatusCodes.OK).json({ tweets, count: tweets.length })
 }
 const getTweet = async (req, res) => {
@@ -12,7 +12,7 @@ const getTweet = async (req, res) => {
     params: { id: tweetId },
   } = req
 
-  const tweet = await tweet.findOne({
+  const tweet = await Tweet.findOne({
     _id: tweetId,
     userId: userId,
   })
@@ -24,7 +24,7 @@ const getTweet = async (req, res) => {
 
 const createTweet = async (req, res) => {
   req.body.userId = req.user.userId
-  const createdTweet = await tweet.create(req.body)
+  const createdTweet = await Tweet.create(req.body)
   res.status(StatusCodes.CREATED).json({ createdTweet })
 }
 
@@ -34,7 +34,7 @@ const deleteTweet = async (req, res) => {
     params: { id: tweetId },
   } = req
 
-  const tweet = await tweet.findByIdAndRemove({
+  const tweet = await Tweet.findByIdAndRemove({
     _id: tweetId,
     userId: userId,
   })
