@@ -23,6 +23,14 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide password'],
     minlength: 6,
   },
+  followers:[{
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  }],
+  following:[{
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  }],
 })
 
 UserSchema.pre('save', async function () {

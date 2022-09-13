@@ -18,8 +18,8 @@ const app = express();
 const connectDB = require('./db/connect');
 const authenticateUser = require('./middleware/authentication');
 // routers
-const authRouter = require('./routes/auth');
-const tweetRouter = require('./routes/tweet');
+const authRouter = require('./routes/AuthRoutes');
+const tweetRouter = require('./routes/TweetRoutes');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
