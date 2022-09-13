@@ -20,6 +20,8 @@ const authenticateUser = require('./middleware/authentication');
 // routers
 const authRouter = require('./routes/AuthRoutes');
 const tweetRouter = require('./routes/TweetRoutes');
+const userRouter = require('./routes/UserRoutes');
+
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -45,6 +47,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 // routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/tweet', authenticateUser, tweetRouter);
+app.use('/api/v1/interactions', authenticateUser, userRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
