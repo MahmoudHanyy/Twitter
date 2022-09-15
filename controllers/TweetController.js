@@ -45,13 +45,12 @@ const deleteTweet = async (req, res) => {
   res.status(StatusCodes.OK).send()
 }
 
-const like = async (req, res) => {
+const likeTweet = async (req, res) => {
   const userId = req.user.userId
   const tweet = await Tweet.findOne({_id: req.body.tweetId})
   const user = await User.findOne({_id: userId})
   const like = await Tweet.findOne({'likes': userId})
 
-tweet
   if (!user || !tweet ){
       throw new NotFoundError('Something went wrong')
   }
@@ -71,7 +70,5 @@ module.exports = {
   deleteTweet,
   getAllTweets,
   getTweet,
-  like,
-  // getAllLikes,
-  // unlike,
+  likeTweet,
 }
