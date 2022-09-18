@@ -2,10 +2,12 @@ const Tweet = require('../models/Tweet')
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, NotFoundError } = require('../errors')
+const TweetResource = require('../resources/TweetResource')
 
 const getAllTweets = async (req, res) => {
   const tweets = await Tweet.find({ userId: req.user.userId }).sort('createdAt')
-  res.status(StatusCodes.OK).json({ tweets, count: tweets.length })
+  const tweetCollection = TweetResource.collection(tweets);
+  res.status(StatusCodes.OK).json(tweetCollection)
 }
 const getTweet = async (req, res) => {
   const {

@@ -24,7 +24,9 @@ const register = async (req, res) => {
         throw new BadRequestError('Missing information, please make sure you fill all data required!')
     }
     const user = await User.create(req.body)
+    console.log(user)
     token = user.createJWT()
+    console.log(token)
     const{password, ...createdUser }= user._doc
     res.status(StatusCodes.CREATED).json({ user:createdUser, token })
 }
