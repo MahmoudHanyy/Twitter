@@ -52,7 +52,7 @@ app.use('/api/v1/interactions', authenticateUser, userRouter)
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3050;
 
 const start = async () => {
   try {

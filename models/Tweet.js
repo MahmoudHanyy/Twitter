@@ -1,10 +1,11 @@
+const { string } = require('joi')
 const mongoose = require('mongoose')
 
 const TweetSchema = new mongoose.Schema(
   {
     content: {
       type: String,
-      required: [true, 'Please provide company name'],
+      required: [true, 'Please provide tweet content'],
       maxlength: 280,
     },
     userId: {
@@ -16,6 +17,10 @@ const TweetSchema = new mongoose.Schema(
         type: mongoose.Types.ObjectId,
         ref: 'User',
       }],
+      sentFrom: {
+        type: String,
+        maxlength: 100,
+      },
   },
   { timestamps: true }
 )
